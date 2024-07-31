@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryModel {
-    Connection connection;
+    final Connection connection;
 
     List<Category> categoryList;
 
@@ -43,7 +43,7 @@ public class CategoryModel {
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         ResultSet rs = preparedStatement.executeQuery();
-        while (rs.next()) {
+        if (rs.next()) {
             Category category = new Category();
             category.setId(rs.getInt(1));
             category.setName(rs.getString(2));
@@ -66,7 +66,7 @@ public class CategoryModel {
             preparedStatement.setString(index++, "%" + searchCategoryDto.getInput() + "%");
         }
         preparedStatement.setInt(index++, searchCategoryDto.getSize());
-        preparedStatement.setInt(index++, (searchCategoryDto.getPage() - 1) * searchCategoryDto.getSize());
+        preparedStatement.setInt(index, (searchCategoryDto.getPage() - 1) * searchCategoryDto.getSize());
         ResultSet rs = preparedStatement.executeQuery();
         List<Category> categories = new ArrayList<>();
         while (rs.next()) {
@@ -91,33 +91,33 @@ public class CategoryModel {
             preparedStatement.setString(index, "%" + searchCategoryDto.getInput() + "%");
         }
         ResultSet rs = preparedStatement.executeQuery();
-        while (rs.next()) {
+        if (rs.next()) {
             return rs.getInt(1);
         }
         return 0;
     }
 
-    public int createCategory(Category category) throws SQLException {
+    public void createCategory(Category category) throws SQLException {
         String sql = "INSERT INTO CATEGORIES(name) " + "           VALUES (?)";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setString(1, category.getName());
-        return preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
     }
 
-    public int updateCategory(Category category) throws SQLException {
+    public void updateCategory(Category category) throws SQLException {
         String sql = "UPDATE categories " +
                 "   set name =? " +
                 "   WHERE id = ? ";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setString(1, category.getName());
         preparedStatement.setInt(2, category.getId());
-        return preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
     }
 
-    public int deleteCategory(Integer id) throws SQLException {
+    public void deleteCategory(Integer id) throws SQLException {
         String sql = "DELETE FROM CATEGORIES WHERE id = ?";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
-        return preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
     }
 }

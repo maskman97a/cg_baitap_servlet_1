@@ -16,8 +16,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class BookService {
-    private BookModel bookModel;
-    private CategoryModel categoryModel;
+    private final BookModel bookModel;
+    private final CategoryModel categoryModel;
 
     public BookService() {
         this.bookModel = new BookModel();
@@ -34,7 +34,7 @@ public class BookService {
         requestDispatcher.forward(req, resp);
     }
 
-    public void renderEditBookPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void renderEditBookPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
             Integer id = Integer.parseInt(req.getParameter("id"));
             Book book = bookModel.getBookById(id);
@@ -70,7 +70,7 @@ public class BookService {
 
     public void updateBook(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            Integer id = Integer.parseInt(req.getParameter("id"));
+            int id = Integer.parseInt(req.getParameter("id"));
             String name = req.getParameter("name");
             String description = req.getParameter("description");
             int price = Integer.parseInt(req.getParameter("price"));
@@ -92,7 +92,7 @@ public class BookService {
         try {
             String input = req.getParameter("input");
             int size = 10;
-            Integer page = 1;
+            int page = 1;
             if (req.getParameter("size") != null) {
                 size = Integer.parseInt(req.getParameter("size"));
             }
@@ -112,12 +112,12 @@ public class BookService {
             BigDecimal totalPage = bCount.divide(bSize, 0, RoundingMode.CEILING);
             req.setAttribute("totalPage", totalPage);
 
-            Integer tabSize = 10;
+            int tabSize = 10;
             BigDecimal bTabSize = new BigDecimal(10);
             BigDecimal countTab = totalPage.divide(bTabSize, 0, RoundingMode.CEILING);
             for (int tabIndex = 0; tabIndex < countTab.intValue(); tabIndex++) {
-                Integer startValue = tabIndex * tabSize + 1;
-                Integer endValue = (tabIndex + 1) * tabSize;
+                int startValue = tabIndex * tabSize + 1;
+                int endValue = (tabIndex + 1) * tabSize;
                 if (page >= startValue && page <= endValue) {
                     if (tabIndex == 0) {
                         req.setAttribute("firstTab", true);

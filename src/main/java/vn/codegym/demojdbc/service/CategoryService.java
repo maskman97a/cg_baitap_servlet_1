@@ -1,7 +1,6 @@
 package vn.codegym.demojdbc.service;
 
 import vn.codegym.demojdbc.dto.SearchCategoryDto;
-import vn.codegym.demojdbc.entity.Book;
 import vn.codegym.demojdbc.entity.Category;
 import vn.codegym.demojdbc.model.CategoryModel;
 
@@ -12,11 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.SQLException;
 import java.util.List;
 
 public class CategoryService {
-    private CategoryModel categoryModel;
+    private final CategoryModel categoryModel;
 
     public CategoryService() {
         categoryModel = new CategoryModel();
@@ -42,7 +40,7 @@ public class CategoryService {
         return categoryModel.getAllCategory();
     }
 
-    public void renderEditCategoryPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void renderEditCategoryPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
             Integer id = Integer.parseInt(req.getParameter("id"));
             Category category = categoryModel.getCategoryById(id);
@@ -72,7 +70,7 @@ public class CategoryService {
 
     public void updateCategory(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            Integer id = Integer.parseInt(req.getParameter("id"));
+            int id = Integer.parseInt(req.getParameter("id"));
             String name = req.getParameter("name");
             Category category = new Category();
             category.setId(id);
@@ -88,7 +86,7 @@ public class CategoryService {
         try {
             String input = req.getParameter("input");
             int size = 10;
-            Integer page = 1;
+            int page = 1;
             if (req.getParameter("size") != null) {
                 size = Integer.parseInt(req.getParameter("size"));
             }
@@ -108,12 +106,12 @@ public class CategoryService {
             BigDecimal totalPage = bCount.divide(bSize, 0, RoundingMode.CEILING);
             req.setAttribute("totalPage", totalPage);
 
-            Integer tabSize = 10;
+            int tabSize = 10;
             BigDecimal bTabSize = new BigDecimal(10);
             BigDecimal countTab = totalPage.divide(bTabSize, 0, RoundingMode.CEILING);
             for (int tabIndex = 0; tabIndex < countTab.intValue(); tabIndex++) {
-                Integer startValue = tabIndex * tabSize + 1;
-                Integer endValue = (tabIndex + 1) * tabSize;
+                int startValue = tabIndex * tabSize + 1;
+                int endValue = (tabIndex + 1) * tabSize;
                 if (page >= startValue && page <= endValue) {
                     if (tabIndex == 0) {
                         req.setAttribute("firstTab", true);
@@ -141,7 +139,7 @@ public class CategoryService {
         }
     }
 
-    public void renderListCategories(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+    public void renderListCategories(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Category> categoryList = categoryModel.getAllCategory();
         Integer totalPage = 5;
         Integer currentPage = 1;

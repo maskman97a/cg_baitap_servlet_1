@@ -19,7 +19,7 @@
 <body>
 <div class="container" style="height: 500px">
     <div class="row">
-        <a href="/category">Category Manager</a>
+        <a href="${pageContext.request.contextPath}/category">Category Manager</a>
     </div>
     <div class="row">
         <div class="col-6">
@@ -27,8 +27,10 @@
         </div>
 
         <div class="col-6">
-            <form method="get" action="/book/search">
-                <input type="text" class="search" name="input"/>
+            <form method="get" action="${pageContext.request.contextPath}/book/search">
+                <label>
+                    <input type="text" class="search" name="input"/>
+                </label>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
@@ -57,8 +59,8 @@
                         <td>${item.description}</td>
                         <td class="formatted-number">${item.price}</td>
                         <td>${item.category.name}</td>
-                        <td><a href="/book/edit?id=${item.id}" class="btn btn-success">Edit</a> |
-                            <a href="/book/delete?id=${item.id}" class="btn btn-danger">Delete</a>
+                        <td><a href="${pageContext.request.contextPath}/book/edit?id=${item.id}" class="btn btn-success">Edit</a> |
+                            <a href="${pageContext.request.contextPath}/book/delete?id=${item.id}" class="btn btn-danger">Delete</a>
                                 <%--                    <button class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>--%>
                         </td>
                         <div class="modal fade" id="myModal">
@@ -72,7 +74,7 @@
 
                                     <!-- Modal Body -->
                                     <div class="modal-body">
-                                        <a href="book/delete?id=${item.id}" class="btn btn-danger">OK</a>
+                                        <a href="${pageContext.request.contextPath}/book/delete?id=${item.id}" class="btn btn-danger">OK</a>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
                                     </div>
@@ -92,20 +94,20 @@
             <ul class="pagination" style="justify-content: center">
                 <c:if test="${!firstTab}">
                     <li class="page-item"><a class="page-link"
-                                             href="/book/search?page=${currentPage-1}&size=10">
+                                             href="${pageContext.request.contextPath}/book/search?page=${currentPage-1}&size=10">
                         Previous</a></li>
                 </c:if>
 
                 <c:forEach begin="${beginPage}" end="${endPage}" var="page">
                     <li class="page-item ${currentPage == page ? 'active' : ''}">
                         <a class="page-link"
-                           href="/book/search?page=${page}&size=10">${page}</a>
+                           href="${pageContext.request.contextPath}/book/search?page=${page}&size=10">${page}</a>
                     </li>
                 </c:forEach>
                 <c:if test="${!lastTab}">
                     <li class="page-item">
                         <a class="page-link"
-                           href="/book/search?page=${currentPage+1}&size=10">
+                           href="<c:url value="${pageContext.request.contextPath}/book/search?page=${currentPage+1}&size=10"/>">
                             Next</a></li>
                 </c:if>
             </ul>

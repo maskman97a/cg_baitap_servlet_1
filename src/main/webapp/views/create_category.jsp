@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-horizontal" action="/category/${currentFunction}" method="POST">
+    <form class="form-horizontal" action="${pageContext.request.contextPath}/category/${currentFunction}" method="POST">
         <h1><c:out value="${labelAction}"></c:out></h1>
         <div class="form-group" hidden="true">
             <input type="text" class="form-control" placeholder="id" name="id" value="${category.id}"/>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="${btnActionValue}"/>
-            <a href="/category" class="btn btn-default">Back</a>
+            <a href="<c:url value="${pageContext.request.contextPath}/category"/>" class="btn btn-default">Back</a>
         </div>
     </form>
 </div>

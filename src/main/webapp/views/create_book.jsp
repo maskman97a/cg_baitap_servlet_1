@@ -20,20 +20,28 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-horizontal" action="/book/${currentFunction}" method="POST">
+    <form class="form-horizontal" action="${pageContext.request.contextPath}/book/${currentFunction}" method="POST">
         <h1><c:out value="${labelAction}"></c:out></h1>
         <div class="form-group" hidden="true">
-            <input type="text" class="form-control" placeholder="id" name="id" value="${book.id}"/>
+            <label>
+                <input type="text" class="form-control" placeholder="id" name="id" value="${book.id}"/>
+            </label>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Name" name="name" value="${book.name}"/>
+            <label>
+                <input type="text" class="form-control" placeholder="Name" name="name" value="${book.name}"/>
+            </label>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Description" name="description"
-                   value="${book.description}"/>
+            <label>
+                <input type="text" class="form-control" placeholder="Description" name="description"
+                       value="${book.description}"/>
+            </label>
         </div>
         <div class="form-group">
-            <input type="number" class="form-control" placeholder="Price" name="price" value="${book.price}"/>
+            <label>
+                <input type="number" class="form-control" placeholder="Price" name="price" value="${book.price}"/>
+            </label>
         </div>
         <div class="form-group">
             <select class="form-control" name="categoryId">
@@ -45,7 +53,7 @@
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="${btnActionValue}"/>
-            <a href="/book" class="btn btn-default">Back</a>
+            <a href="<c:url value="${pageContext.request.contextPath}/book"/>" class="btn btn-default">Back</a>
         </div>
     </form>
 </div>
