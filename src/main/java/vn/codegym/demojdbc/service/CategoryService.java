@@ -62,7 +62,7 @@ public class CategoryService {
             Category category = new Category();
             category.setName(name);
             categoryModel.createCategory(category);
-            resp.sendRedirect("/category");
+            resp.sendRedirect(req.getContextPath()+"/category");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -76,7 +76,7 @@ public class CategoryService {
             category.setId(id);
             category.setName(name);
             categoryModel.updateCategory(category);
-            resp.sendRedirect("/category");
+            resp.sendRedirect(req.getContextPath()+"/category");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -153,7 +153,7 @@ public class CategoryService {
         try {
             Integer id = Integer.parseInt(req.getParameter("id"));
             categoryModel.deleteCategory(id);
-            resp.sendRedirect("/category");
+            resp.sendRedirect(req.getContextPath()+"/category");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

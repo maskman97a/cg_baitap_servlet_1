@@ -62,7 +62,7 @@ public class BookService {
             book.setPrice(price);
             book.setCategoryId(categoryId);
             bookModel.createBook(book);
-            resp.sendRedirect("/book");
+            resp.sendRedirect(req.getContextPath() + "/book");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -82,7 +82,7 @@ public class BookService {
             book.setPrice(price);
             book.setCategoryId(categoryId);
             bookModel.updateBook(book);
-            resp.sendRedirect("/book");
+            resp.sendRedirect(req.getContextPath() + "/book");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -159,7 +159,7 @@ public class BookService {
         try {
             Integer id = Integer.parseInt(req.getParameter("id"));
             bookModel.deleteBook(id);
-            resp.sendRedirect("/book");
+            resp.sendRedirect(req.getContextPath() + "/book");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
