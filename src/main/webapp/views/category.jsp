@@ -18,7 +18,7 @@
 <body>
 
 <div class="container" style="height: 500px">
-    <div class="row">pageContext.request.contextPath}
+    <div class="row">
         <a href="${pageContext.request.contextPath}/book">Book Manager</a>
     </div>
     <div class="row">
