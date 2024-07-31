@@ -107,7 +107,7 @@
                 <c:if test="${!lastTab}">
                     <li class="page-item">
                         <a class="page-link"
-                           href="<c:url value="${pageContext.request.contextPath}/book/search?page=${currentPage+1}&size=10"/>">
+                           href="${pageContext.request.contextPath}/book/search?page=${currentPage+1}&size=10">
                             Next</a></li>
                 </c:if>
             </ul>

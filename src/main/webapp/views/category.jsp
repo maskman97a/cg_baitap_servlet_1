@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-6">
-            <form method="get" action="<c:url value="${pageContext.request.contextPath}/category/search"/>">
+            <form method="get" action="${pageContext.request.contextPath}/category/search">
                 <input type="text" class="search" name="input"/>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
@@ -89,20 +89,20 @@
             <ul class="pagination" style="justify-content: center">
                 <c:if test="${!firstTab}">
                     <li class="page-item"><a class="page-link"
-                                             href="<c:url value="${pageContext.request.contextPath}/category/search?page=${currentPage-1}&size=10"/>">
+                                             href="${pageContext.request.contextPath}/category/search?page=${currentPage-1}&size=10">
                         Previous</a></li>
                 </c:if>
 
                 <c:forEach begin="${beginPage}" end="${endPage}" var="page">
                     <li class="page-item ${currentPage == page ? 'active' : ''}">
                         <a class="page-link"
-                           href="<c:url value="${pageContext.request.contextPath}/category/search?page=${page}&size=10"/>">${page}</a>
+                           href="${pageContext.request.contextPath}/category/search?page=${page}&size=10">${page}</a>
                     </li>
                 </c:forEach>
                 <c:if test="${!lastTab}">
                     <li class="page-item">
                         <a class="page-link"
-                           href="<c:url value="${pageContext.request.contextPath}/category/search?page=${currentPage+1}&size=10"/>">
+                           href="${pageContext.request.contextPath}/category/search?page=${currentPage+1}&size=10">
                             Next</a></li>
                 </c:if>
             </ul>
