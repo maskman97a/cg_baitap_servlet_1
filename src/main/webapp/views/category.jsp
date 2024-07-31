@@ -41,7 +41,7 @@
                 <thead>
                 <caption><h1>List of Categories</h1></caption>
                 <tr>
-                    <td>ID</td>
+                    <td>STT</td>
                     <td>Name</td>
                     <td>Action</td>
                 </tr>
@@ -49,7 +49,7 @@
                 <tbody>
                 <c:forEach var="item" items="${categoryList}">
                     <tr>
-                        <td>${item.id}</td>
+                        <td>${item.index}</td>
                         <td>${item.name}</td>
                         <td><a href="${pageContext.request.contextPath}/category/edit?id=${item.id}"
                                class="btn btn-success">Edit</a> |

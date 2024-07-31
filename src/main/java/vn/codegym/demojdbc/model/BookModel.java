@@ -68,6 +68,7 @@ public class BookModel {
         if (searchBookDto.getInput() != null) {
             sql += "   and b.name like ? ";
         }
+        sql += " order by id desc ";
         sql += " limit ? offset ?";
         PreparedStatement preparedStatement = this.con.prepareStatement(sql);
         int index = 1;
@@ -78,8 +79,10 @@ public class BookModel {
         preparedStatement.setInt(index, (searchBookDto.getPage() - 1) * searchBookDto.getSize());
         ResultSet rs = preparedStatement.executeQuery();
         List<Book> bookList = new ArrayList<>();
+        int stt = 1;
         while (rs.next()) {
             Book book = new Book();
+            book.setIndex(stt++);
             book.setId(rs.getInt(1));
             book.setName(rs.getString(2));
             book.setDescription(rs.getString(3));

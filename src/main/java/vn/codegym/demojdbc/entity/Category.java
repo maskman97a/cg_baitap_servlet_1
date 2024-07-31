@@ -1,11 +1,20 @@
 package vn.codegym.demojdbc.entity;
 
 public class Category {
+    private int index;
     private int id;
     private String name;
 
     public Category() {
 
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public Category(String name) {

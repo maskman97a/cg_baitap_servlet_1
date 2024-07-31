@@ -43,7 +43,7 @@
                 <thead>
                 <caption><h1>List of books</h1></caption>
                 <tr>
-                    <td>ID</td>
+                    <td>STT</td>
                     <td>Name</td>
                     <td>Description</td>
                     <td>Price</td>
@@ -54,7 +54,7 @@
                 <tbody>
                 <c:forEach var="item" items="${listBooks}">
                     <tr>
-                        <td>${item.id}</td>
+                        <td>${item.index}</td>
                         <td>${item.name}</td>
                         <td>${item.description}</td>
                         <td class="formatted-number">${item.price}</td>

@@ -59,6 +59,7 @@ public class CategoryModel {
         if (searchCategoryDto.getInput() != null) {
             sql += "   and name like ? ";
         }
+        sql += " order by id desc ";
         sql += " limit ? offset ?";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         int index = 1;
@@ -69,8 +70,10 @@ public class CategoryModel {
         preparedStatement.setInt(index, (searchCategoryDto.getPage() - 1) * searchCategoryDto.getSize());
         ResultSet rs = preparedStatement.executeQuery();
         List<Category> categories = new ArrayList<>();
+        int stt = 1;
         while (rs.next()) {
             Category category = new Category();
+            category.setIndex(stt++);
             category.setId(rs.getInt(1));
             category.setName(rs.getString(2));
             categories.add(category);
