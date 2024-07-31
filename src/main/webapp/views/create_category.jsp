@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="${btnActionValue}"/>
-            <a href="<c:url value="${pageContext.request.contextPath}/category"/>" class="btn btn-default">Back</a>
+            <a href="${pageContext.request.contextPath}/category" class="btn btn-default">Back</a>
         </div>
     </form>
 </div>
