@@ -38,7 +38,7 @@ public class CategoryModel {
     }
 
     public Category getCategoryById(Integer id) throws SQLException {
-        String sql = "SELECT id, name " + "   FROM CATEGORIES " +
+        String sql = "SELECT id, name " + "   FROM categories " +
                 " Where id = ? ";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
