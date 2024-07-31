@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private final static String URL = "jdbc:mysql://localhost:3306/library?useSSL=false";
+    private final static String URL = "jdbc:mysql://127.0.0.1:3306/library";
     private final static String USERNAME = "root";
     private final static String PASSWORD = "123456a@";
 
@@ -16,7 +16,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("Connected to the database");
         } catch (SQLException e) {
