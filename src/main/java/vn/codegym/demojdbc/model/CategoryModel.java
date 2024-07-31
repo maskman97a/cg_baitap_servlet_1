@@ -98,7 +98,7 @@ public class CategoryModel {
     }
 
     public void createCategory(Category category) throws SQLException {
-        String sql = "INSERT INTO CATEGORIES(name) " + "           VALUES (?)";
+        String sql = "INSERT INTO categories(name) " + "           VALUES (?)";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setString(1, category.getName());
         preparedStatement.executeUpdate();
@@ -115,7 +115,7 @@ public class CategoryModel {
     }
 
     public void deleteCategory(Integer id) throws SQLException {
-        String sql = "DELETE FROM CATEGORIES WHERE id = ?";
+        String sql = "DELETE FROM categories WHERE id = ?";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();

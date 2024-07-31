@@ -114,7 +114,7 @@ public class BookModel {
     }
 
     public void createBook(Book book) throws SQLException {
-        String sql = "INSERT INTO BOOKS(name, description, price, category_id) " + "           VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO books(name, description, price, category_id) " + "           VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = this.con.prepareStatement(sql);
         preparedStatement.setString(1, book.getName());
         preparedStatement.setString(2, book.getDescription());
@@ -137,7 +137,7 @@ public class BookModel {
     }
 
     public void deleteBook(Integer id) throws SQLException {
-        String sql = "DELETE FROM BOOKS WHERE id = ?";
+        String sql = "DELETE FROM books WHERE id = ?";
         PreparedStatement preparedStatement = this.con.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
